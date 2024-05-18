@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "844996928045",
+    "project_id": "joomoonmoa",
+    "storage_bucket": "joomoonmoa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844996928045:android:d444e7c08aa443ede18ea4",
+        "android_client_info": {
+          "package_name": "com.example.joomoonmoa_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnhPt4Ejhk6fzznjdcjLOPcxpVhG5S1AA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844996928045:android:bfe49316585c1fd5e18ea4",
+        "android_client_info": {
+          "package_name": "com.expo.fcm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnhPt4Ejhk6fzznjdcjLOPcxpVhG5S1AA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
