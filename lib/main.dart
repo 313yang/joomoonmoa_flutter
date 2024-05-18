@@ -9,12 +9,35 @@ void getToken() async {
   print("token:::$fcmToken");
 }
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  await Firebase.initializeApp();
+
+  print('Background;:Message received: ${message.notification?.title}');
+  print('Background;:Message received: ${message.notification?.body}');
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  // NotificationSettings settings = await messaging.requestPermission(
+  //   alert: true,
+  //   announcement: false,
+  //   badge: true,
+  //   carPlay: false,
+  //   criticalAlert: false,
+  //   provisional: false,
+  //   sound: true,
+  // );
+
+  // print('User granted permission: ${settings.authorizationStatus}');
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyWebView());
 }
 
@@ -28,7 +51,7 @@ class MyWebView extends StatefulWidget {
 class _MyWebViewState extends State<MyWebView> {
   // WebViewController 선언
   WebViewController? _webViewController;
-
+  var token = "";
   @override
   void initState() {
     _webViewController = WebViewController()
@@ -37,16 +60,21 @@ class _MyWebViewState extends State<MyWebView> {
     super.initState();
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       // Handle the message when the app is in the foreground
-      print('Message received: ${message.messageId}');
-      getToken();
+      print('Message received: ${message.notification?.title}');
+      print('Message received: ${message.notification?.body}');
     });
+    getToken();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 5,
+        ),
         body: WebViewWidget(controller: _webViewController!),
+        // ,
       ),
     );
   }
