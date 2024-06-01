@@ -55,7 +55,7 @@ Future<void> fcmSetting() async {
   );
 
   var initializationSettingsAndroid =
-      const AndroidInitializationSettings('@mipmap/launcher_icon');
+      const AndroidInitializationSettings('@mipmap/ic_launcher');
 
   var initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid, iOS: initialzationSettingsIOS);
@@ -88,7 +88,7 @@ Future<void> fcmSetting() async {
           android: AndroidNotificationDetails(
             channel.id,
             channel.name,
-            // icon: '@mipmap/launcher_icon',
+            icon: '@mipmap/ic_launcher',
           ),
         ),
       );
@@ -118,7 +118,9 @@ class _MyWebViewState extends State<MyWebView> {
   void initState() {
     _webViewController = WebViewController()
       ..loadRequest(Uri.parse('https://www.joomoonmoa.com')) //출력할 웹페이지
-      ..setJavaScriptMode(JavaScriptMode.unrestricted);
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..runJavaScript(
+          "document.getElementById('device_token').value = 'testtest';");
     super.initState();
   }
 
