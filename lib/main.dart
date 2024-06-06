@@ -10,13 +10,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
 }
 
+String? token = "test";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  fcmSetting();
+  await fcmSetting(); // fcmSetting 함수가 완료될 때까지 기다립니다.
 
   runApp(const MyWebView());
 }
@@ -96,11 +96,11 @@ Future<void> fcmSetting() async {
   });
 
   // 토큰 발급
-  var fcmToken = await FirebaseMessaging.instance.getToken();
-
+  token = await FirebaseMessaging.instance.getToken();
   // 토큰 리프레시 수신
   FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
     // save token to server
+    token = newToken;
   });
 }
 
@@ -117,10 +117,35 @@ class _MyWebViewState extends State<MyWebView> {
   @override
   void initState() {
     _webViewController = WebViewController()
-      ..loadRequest(Uri.parse('https://www.joomoonmoa.com')) //출력할 웹페이지
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..runJavaScript(
-          "document.getElementById('device_token').value = 'testtest';");
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            debugPrint('progressing $progress');
+          },
+          onPageStarted: (String url) {
+            debugPrint(url);
+          },
+          onPageFinished: (String url) {
+            debugPrint('Page Finished');
+            // Page finished loading, now inject the token
+            _webViewController!.runJavaScript("""
+              (() => { 
+                  try {
+                    const deviceToken = '$token'; 
+                    localStorage.setItem('deviceToken', deviceToken);
+                  } catch(e) {
+                    alert(e);
+                  }
+              })();
+            """);
+          },
+          onWebResourceError: (WebResourceError error) {},
+        ),
+      )
+      ..loadRequest(Uri.parse(
+          'https://develop.d4zinqpf8hiuq.amplifyapp.com/')); //출력할 웹페이지
+
     super.initState();
   }
 
