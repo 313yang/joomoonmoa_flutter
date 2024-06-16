@@ -4,13 +4,30 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'dart:io' show Platform;
+
+// OS 타입을 정의하는 enum 생성
+enum OSType {
+  ANDROID,
+  iOS,
+  WEB,
+  MACOS,
+  WINDOWS,
+  LINUX,
+}
+
+extension OSTypeExtension on OSType {
+  String get name {
+    return toString().split('.').last;
+  }
+}
 
 // 백그라운드 설정 코드는 맨 최상단에 위치해야함
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
 }
 
-String? token = "";
+String? token = "test";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -128,11 +145,19 @@ class _MyWebViewState extends State<MyWebView> {
           },
           onPageFinished: (String url) {
             debugPrint('Page Finished');
+            // 예시 사용법
+
+            OSType currentOS = OSType.ANDROID;
+            // enum 값을 문자열로 변환
+            String osName = currentOS.name;
+            print(osName); // 출력: ANDROID
             // Page finished loading, now inject the token
             _webViewController!.runJavaScript("""
               (() => { 
                   try {
-                    localStorage.setItem('deviceToken', $token);
+                    const deviceToken = '$token'; 
+                    localStorage.setItem('deviceToken', deviceToken);
+                    localStorage.setItem('deviceOs','$osName')
                   } catch(e) {
                     alert(e);
                   }
@@ -142,8 +167,7 @@ class _MyWebViewState extends State<MyWebView> {
           onWebResourceError: (WebResourceError error) {},
         ),
       )
-      ..loadRequest(Uri.parse(
-          'https://develop.d4zinqpf8hiuq.amplifyapp.com/')); //출력할 웹페이지
+      ..loadRequest(Uri.parse('https://www.joomoonmoa.com/')); //출력할 웹페이지
 
     super.initState();
   }
