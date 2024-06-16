@@ -10,7 +10,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
 }
 
-String? token = "test";
+String? token = "";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -132,8 +132,7 @@ class _MyWebViewState extends State<MyWebView> {
             _webViewController!.runJavaScript("""
               (() => { 
                   try {
-                    const deviceToken = '$token'; 
-                    localStorage.setItem('deviceToken', deviceToken);
+                    localStorage.setItem('deviceToken', $token);
                   } catch(e) {
                     alert(e);
                   }
