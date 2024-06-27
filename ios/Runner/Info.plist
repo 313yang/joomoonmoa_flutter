@@ -48,5 +48,6 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>GoogleService-Info.plist</key>
+	<string>ios/Runner/GoogleService-Info.plist</string>
 </dict>
 </plist>
