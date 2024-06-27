@@ -42,7 +42,13 @@
     />
     <meta-data
       android:name="com.google.firebase.messaging.default_notification_icon"
-      android:resource="@drawable/ic_notification" />
+      android:background="@color/primary"
+      android:resource="@mipmap/ic_launcher" />
+    <meta-data
+      android:name="com.google.firebase.messaging.default_notification_color"
+      android:background="@color/primary"
+      android:resource="@color/white" />
+
   </application>
   <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and

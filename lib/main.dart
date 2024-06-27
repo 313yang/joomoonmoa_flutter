@@ -106,6 +106,7 @@ Future<void> fcmSetting() async {
             channel.id,
             channel.name,
             icon: '@mipmap/ic_launcher',
+            color: const Color.fromARGB(0, 122, 90, 248),
           ),
         ),
       );
