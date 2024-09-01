@@ -25,6 +25,10 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     namespace "com.example.joomoonmoa_flutter"
     compileSdk flutter.compileSdkVersion
@@ -61,7 +65,23 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 flutter {
