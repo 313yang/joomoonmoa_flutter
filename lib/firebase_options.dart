@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '844996928045',
     projectId: 'joomoonmoa',
     storageBucket: 'joomoonmoa.appspot.com',
-    iosBundleId: 'com.example.joomoonmoaFlutter',
+    iosBundleId: 'com.joomoonmoa',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '844996928045',
     projectId: 'joomoonmoa',
     storageBucket: 'joomoonmoa.appspot.com',
-    iosBundleId: 'com.example.joomoonmoaFlutter',
+    iosBundleId: 'com.joomoonmoa',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
