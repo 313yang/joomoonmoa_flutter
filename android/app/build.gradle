@@ -30,6 +30,16 @@ def keystorePropertiesFile = rootProject.file("key.properties")
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
+    compileSdkVersion 34
+
+    defaultConfig {
+        applicationId "com.joomoonmoa"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 2
+        versionName "1.1"
+    }
+
     namespace "com.joomoonmoa"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
