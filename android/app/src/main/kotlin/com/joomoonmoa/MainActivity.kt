@@ -1,4 +1,4 @@
-package com.example.joomoonmoa_flutter
+package com.joomoonmoa
 
 import io.flutter.embedding.android.FlutterActivity
 
