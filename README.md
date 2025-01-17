@@ -1,16 +1,29 @@
-# joomoonmoa_flutter
+# 주문모아 모바일 앱
+[주문모아 - 구글플레이 바로가기](https://play.google.com/store/apps/details?id=com.joomoonmoa)
+> 스마트스토어, 쿠팡 등 오픈 마켓 판매자 / 온라인 셀러를 위한 통합 주문 관리 시스템
 
-A new Flutter project.
+-----
+## 개요
+Flutter를 기반으로 한 모바일 및 웹 뷰 환경에서 동작하는 프로젝트입니다. 이 프로젝트는 Firebase를 활용하여 푸쉬 알림 기능을 추가로 제공합니다.
 
-## Getting Started
+## 주요 기능
 
-This project is a starting point for a Flutter application.
+### 1. Flutter 기반 모바일 및 웹 뷰 환경
+- **크로스 플랫폼 지원**: 단일 코드베이스로 iOS, Android 및 웹 브라우저 환경에서 동일하게 동작.
+- **유연한 사용자 경험**: Flutter의 강력한 UI 라이브러리를 활용하여 네이티브에 가까운 사용자 경험 제공.
+- **웹 뷰 통합**: 특정 웹 페이지를 Flutter 애플리케이션 내에서 표시할 수 있도록 WebView 위젯을 구성.
 
-A few resources to get you started if this is your first Flutter project:
+### 2. Firebase 푸쉬 알림 기능
+- **실시간 알림**: Firebase Cloud Messaging(FCM)을 활용하여 사용자에게 실시간 푸쉬 알림 전송.
+- **다양한 알림 유형 지원**: 텍스트 알림, 이미지 알림, 동적 링크 포함 알림 등.
+- **사용자 그룹별 알림**: 특정 사용자 그룹 또는 개별 사용자에게 맞춤형 알림 발송.
+- **백그라운드 및 포어그라운드 알림 처리**: 사용자가 앱을 열지 않은 상태에서도 알림을 수신하고 처리.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 기술 스택
+- **Flutter**: 프론트엔드 개발 및 UI 구성.
+- **Firebase**:
+  - **Cloud Messaging**: 푸쉬 알림 기능 구현.
+  - **Analytics**: 사용자 행동 분석 및 데이터 기반 개선.
+  - **Firestore** (선택 사항): 알림 메시지 데이터 저장 및 관리.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
